@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Resume | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #eef2f7;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #172554;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 18px;
+            color: #cbd5e1;
+        }
+
+        nav {
+            background: #0f172a;
+            text-align: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            color: #172554;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 8px;
+        }
+
+        .profile {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: #dbeafe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            flex-shrink: 0;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background: #dbeafe;
+            color: #1e3a8a;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .project {
+            border-left: 5px solid #2563eb;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f8fafc;
+        }
+
+        .project h3 {
+            color: #1e3a8a;
+            margin-bottom: 5px;
+        }
+
+        .education {
+            padding: 15px;
+            border-left: 5px solid #2563eb;
+            margin-bottom: 15px;
+            background: #f8fafc;
+        }
+
+        .contact p {
+            margin: 8px 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        .download-btn:hover {
+            background: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                margin: 0 6px;
+                font-size: 14px;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media print {
+
+            nav,
+            .download-btn {
+                display: none;
+            }
+
+            body {
+                background: white;
+            }
+
+            .card {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Kavi Raj</h1>
+        <p>Computer Science Student | Web Developer | Cloud Enthusiast</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main class="container">
+
+        <!-- About -->
+        <section id="about" class="card">
+            <h2>About Me</h2>
+
+            <div class="profile">
+                <div class="profile-img">
+                    👨‍💻
+                </div>
+
+                <div>
+                    <p>
+                        Hello! I am a passionate Computer Science student
+                        interested in software development, cloud computing,
+                        artificial intelligence and web technologies.
+                    </p>
+
+                    <p>
+                        I enjoy building practical projects and learning
+                        new technologies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="card">
+
+            <h2>Education</h2>
+
+            <div class="education">
+                <h3>Bachelor of Engineering - Computer Science</h3>
+                <p><strong>ABC Engineering College</strong></p>
+                <p>2024 - 2028</p>
+                <p>CGPA: 8.5 / 10</p>
+            </div>
+
+            <div class="education">
+                <h3>Higher Secondary Education</h3>
+                <p><strong>ABC PU College</strong></p>
+                <p>2022 - 2024</p>
+            </div>
+
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="card">
+
+            <h2>Technical Skills</h2>
+
+            <div class="skills">
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">Python</span>
+                <span class="skill">Java</span>
+                <span class="skill">C</span>
+                <span class="skill">SQL</span>
+                <span class="skill">Git</span>
+                <span class="skill">GitHub</span>
+                <span class="skill">AWS</span>
+                <span class="skill">React</span>
+                <span class="skill">MongoDB</span>
+            </div>
+
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="card">
+
+            <h2>Projects</h2>
+
+            <div class="project">
+                <h3>🚦 Smart Traffic Signal System</h3>
+
+                <p>
+                    Developed a traffic management system using Arduino,
+                    IR sensors and ESP8266 to detect traffic density
+                    and control traffic signals.
+                </p>
+
+                <p>
+                    <strong>Technologies:</strong>
+                    Arduino, C, ESP8266, IoT
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>🛒 Online Grocery Store</h3>
+
+                <p>
+                    Created a responsive grocery shopping website where
+                    users can browse products and view product information.
+                </p>
+
+                <p>
+                    <strong>Technologies:</strong>
+                    HTML, CSS, JavaScript
+                </p>
+            </div>
+
+            <div class="project">
+                <h3>📱 Mobile Store</h3>
+
+                <p>
+                    Built a demo mobile shopping application displaying
+                    different smartphone brands and product details.
+                </p>
+
+                <p>
+                    <strong>Technologies:</strong>
+                    HTML, CSS, JavaScript
+                </p>
+            </div>
+
+        </section>
+
+        <!-- Certifications -->
+        <section class="card">
+
+            <h2>Certifications</h2>
+
+            <ul>
+                <li>AWS Cloud Fundamentals</li>
+                <li>Python Programming</li>
+                <li>Web Development</li>
+                <li>Database Management Systems</li>
+            </ul>
+
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="card contact">
+
+            <h2>Contact Me</h2>
+
+            <p>📧 Email: kavi@example.com</p>
+            <p>📱 Phone: +91 98765 43210</p>
+            <p>📍 Location: India</p>
+
+            <button class="download-btn" onclick="window.print()">
+                📄 Download Resume
+            </button>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Kavi Raj | My Resume</p>
+    </footer>
+
+</body>
+</html>
+
