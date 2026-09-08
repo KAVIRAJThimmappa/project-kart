@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QuickKart - Smart Grocery Delivery</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f7f8fa;
+    color:#202124;
+}
+
+/* ================= NAVBAR ================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:white;
+    border-bottom:1px solid #eee;
+}
+
+.navbar{
+    max-width:1400px;
+    margin:auto;
+    height:72px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+    padding:0 25px;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#087f5b;
+    white-space:nowrap;
+}
+
+.logo span{
+    color:#ff7a00;
+}
+
+.location{
+    cursor:pointer;
+    min-width:190px;
+}
+
+.location small{
+    color:#777;
+    display:block;
+}
+
+.location strong{
+    font-size:14px;
+}
+
+.search{
+    flex:1;
+    position:relative;
+}
+
+.search input{
+    width:100%;
+    padding:14px 45px 14px 18px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    background:#f6f7f8;
+    outline:none;
+    font-size:15px;
+}
+
+.search input:focus{
+    border-color:#087f5b;
+}
+
+.search-icon{
+    position:absolute;
+    right:16px;
+    top:13px;
+    font-size:20px;
+}
+
+.nav-actions{
+    display:flex;
+    gap:15px;
+    align-items:center;
+}
+
+.nav-btn{
+    border:0;
+    background:white;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.cart-btn{
+    background:#087f5b;
+    color:white;
+    padding:12px 18px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    max-width:1400px;
+    margin:25px auto;
+    padding:45px;
+    border-radius:22px;
+    background:linear-gradient(120deg,#e6fff6,#fff5e8);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero h1{
+    font-size:52px;
+    line-height:1.05;
+    margin-bottom:18px;
+}
+
+.hero h1 span{
+    color:#087f5b;
+}
+
+.hero p{
+    font-size:18px;
+    color:#666;
+    line-height:1.6;
+}
+
+.hero-buttons{
+    margin-top:25px;
+    display:flex;
+    gap:12px;
+}
+
+.primary-btn{
+    border:0;
+    background:#087f5b;
+    color:white;
+    padding:15px 25px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.secondary-btn{
+    border:1px solid #087f5b;
+    background:white;
+    color:#087f5b;
+    padding:15px 25px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.hero-art{
+    font-size:130px;
+}
+
+/* ================= FEATURES ================= */
+
+.features{
+    max-width:1400px;
+    margin:25px auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    padding:0 25px;
+}
+
+.feature{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    border:1px solid #eee;
+}
+
+.feature-icon{
+    font-size:30px;
+}
+
+.feature h3{
+    margin:10px 0 5px;
+}
+
+.feature p{
+    color:#777;
+    font-size:14px;
+}
+
+/* ================= MAIN ================= */
+
+.container{
+    max-width:1400px;
+    margin:auto;
+    padding:30px 25px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.section-header h2{
+    font-size:28px;
+}
+
+.view-all{
+    color:#087f5b;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ================= CATEGORIES ================= */
+
+.categories{
+    display:flex;
+    gap:20px;
+    overflow-x:auto;
+    padding-bottom:15px;
+}
+
+.category{
+    min-width:110px;
+    background:white;
+    border:1px solid #eee;
+    border-radius:15px;
+    padding:15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.category:hover{
+    transform:translateY(-4px);
+    border-color:#087f5b;
+}
+
+.category-icon{
+    font-size:42px;
+    margin-bottom:8px;
+}
+
+.category p{
+    font-size:14px;
+    font-weight:bold;
+}
+
+/* ================= PRODUCTS ================= */
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:18px;
+}
+
+.product{
+    background:white;
+    border-radius:15px;
+    border:1px solid #eee;
+    overflow:hidden;
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.product-image{
+    height:180px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#f8faf9;
+    font-size:80px;
+}
+
+.product-info{
+    padding:15px;
+}
+
+.product-info h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.weight{
+    color:#777;
+    font-size:13px;
+}
+
+.price-row{
+    margin-top:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.price{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.add-btn{
+    background:#087f5b;
+    color:white;
+    border:0;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.qty-control{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.qty-control button{
+    width:28px;
+    height:28px;
+    border:0;
+    background:#087f5b;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+/* ================= DEALS ================= */
+
+.deal-banner{
+    margin:30px 0;
+    padding:25px;
+    background:#fff0df;
+    border-radius:18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.deal-banner h2{
+    color:#d95f02;
+}
+
+/* ================= CART DRAWER ================= */
+
+.cart-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    z-index:2000;
+}
+
+.cart{
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:430px;
+    max-width:100%;
+    background:white;
+    padding:25px;
+    overflow-y:auto;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    border:0;
+    background:#eee;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.cart-item-info{
+    flex:1;
+}
+
+.cart-item-info strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.empty-cart{
+    text-align:center;
+    padding:70px 20px;
+    color:#777;
+}
+
+.cart-summary{
+    margin-top:25px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin:12px 0;
+}
+
+.total{
+    font-size:21px;
+    font-weight:bold;
+    border-top:1px solid #ddd;
+    padding-top:15px;
+}
+
+.checkout{
+    width:100%;
+    padding:15px;
+    border:0;
+    background:#087f5b;
+    color:white;
+    border-radius:10px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+/* ================= TRACKING ================= */
+
+.tracking{
+    background:#111827;
+    color:white;
+    border-radius:20px;
+    padding:35px;
+    margin:30px 0;
+}
+
+.tracking h2{
+    margin-bottom:25px;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.step{
+    text-align:center;
+}
+
+.step-circle{
+    width:45px;
+    height:45px;
+    margin:auto;
+    background:#087f5b;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.step p{
+    margin-top:10px;
+    font-size:13px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#111827;
+    color:#bbb;
+    margin-top:50px;
+    padding:50px 25px;
+}
+
+.footer-grid{
+    max-width:1400px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:30px;
+}
+
+footer h3{
+    color:white;
+    margin-bottom:15px;
+}
+
+footer p{
+    line-height:1.7;
+    font-size:14px;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer li{
+    margin:10px 0;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal-box{
+    background:white;
+    width:450px;
+    max-width:90%;
+    padding:30px;
+    border-radius:18px;
+}
+
+.modal-box h2{
+    margin-bottom:20px;
+}
+
+.modal-box input{
+    width:100%;
+    padding:13px;
+    margin-bottom:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#111827;
+    color:white;
+    padding:14px 25px;
+    border-radius:10px;
+    display:none;
+    z-index:5000;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .products{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:800px){
+
+    .navbar{
+        gap:10px;
+    }
+
+    .location{
+        display:none;
+    }
+
+    .nav-actions .login{
+        display:none;
+    }
+
+    .hero{
+        margin:10px;
+        padding:30px;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero-art{
+        display:none;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .steps{
+        grid-template-columns:repeat(2,1fr);
+        gap:25px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .navbar{
+        height:60px;
+        padding:0 12px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .search input{
+        padding:10px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .product-image{
+        height:130px;
+        font-size:60px;
+    }
+
+    .container{
+        padding:20px 12px;
+    }
+
+    .hero{
+        border-radius:15px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+Quick<span>Kart</span>
+</div>
+
+<div class="location" onclick="openLocation()">
+<small>Deliver to</small>
+<strong id="locationText">Select location ▾</strong>
+</div>
+
+<div class="search">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search groceries, fruits, snacks..."
+oninput="searchProducts()"
+>
+
+<div class="search-icon">🔍</div>
+
+</div>
+
+<div class="nav-actions">
+
+<button class="nav-btn" onclick="openOrders()">
+📦 Orders
+</button>
+
+<button class="nav-btn" onclick="openFavorites()">
+❤️
+</button>
+
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart <span id="cartCount">0</span>
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<h1>
+Groceries delivered
+<span>your way.</span>
+</h1>
+
+<p>
+QuickKart makes grocery shopping easier with transparent pricing,
+smart substitutions, flexible delivery slots and real-time order updates.
+</p>
+
+<div class="hero-buttons">
+
+<button class="primary-btn" onclick="scrollToProducts()">
+Shop Now
+</button>
+
+<button class="secondary-btn" onclick="showFeature()">
+How QuickKart Works
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-art">
+🛒🥦
+</div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+<div class="feature">
+<div class="feature-icon">💰</div>
+<h3>Transparent Prices</h3>
+<p>No surprise charges at checkout.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🔄</div>
+<h3>Smart Substitutions</h3>
+<p>Choose what happens when an item is unavailable.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📦</div>
+<h3>Live Tracking</h3>
+<p>Know exactly where your order is.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🕐</div>
+<h3>Flexible Delivery</h3>
+<p>Select the delivery time that works for you.</p>
+</div>
+
+</section>
+
+
+<!-- ================= MAIN ================= -->
+
+<main class="container">
+
+<!-- Categories -->
+
+<div class="section-header">
+<h2>Shop by Category</h2>
+<span class="view-all">View all</span>
+</div>
+
+<div class="categories">
+
+<div class="category" onclick="filterCategory('Fruits')">
+<div class="category-icon">🍎</div>
+<p>Fruits</p>
+</div>
+
+<div class="category" onclick="filterCategory('Vegetables')">
+<div class="category-icon">🥦</div>
+<p>Vegetables</p>
+</div>
+
+<div class="category" onclick="filterCategory('Dairy')">
+<div class="category-icon">🥛</div>
+<p>Dairy</p>
+</div>
+
+<div class="category" onclick="filterCategory('Snacks')">
+<div class="category-icon">🍪</div>
+<p>Snacks</p>
+</div>
+
+<div class="category" onclick="filterCategory('Beverages')">
+<div class="category-icon">🥤</div>
+<p>Beverages</p>
+</div>
+
+<div class="category" onclick="filterCategory('Staples')">
+<div class="category-icon">🌾</div>
+<p>Staples</p>
+</div>
+
+<div class="category" onclick="filterCategory('Household')">
+<div class="category-icon">🧹</div>
+<p>Household</p>
+</div>
+
+</div>
+
+
+<!-- DEAL -->
+
+<div class="deal-banner">
+
+<div>
+<h2>🔥 Smart Saver Deals</h2>
+<p>Better value without confusing offers.</p>
+</div>
+
+<button class="primary-btn" onclick="showToast('Deals loaded!')">
+Explore Deals
+</button>
+
+</div>
+
+
+<!-- PRODUCTS -->
+
+<div class="section-header" id="productsSection">
+
+<h2>Popular Products</h2>
+
+<span
+class="view-all"
+onclick="showAllProducts()">
+Clear Filter
+</span>
+
+</div>
+
+<div class="products" id="productGrid"></div>
+
+
+<!-- TRACKING -->
+
+<div class="tracking">
+
+<h2>🚚 Example Order Tracking</h2>
+
+<div class="steps">
+
+<div class="step">
+<div class="step-circle">✓</div>
+<p>Order Placed</p>
+</div>
+
+<div class="step">
+<div class="step-circle">✓</div>
+<p>Packed</p>
+</div>
+
+<div class="step">
+<div class="step-circle">🚚</div>
+<p>Out for Delivery</p>
+</div>
+
+<div class="step">
+<div class="step-circle">🏠</div>
+<p>Delivered</p>
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<!-- ================= CART ================= -->
+
+<div class="cart-overlay" id="cartOverlay">
+
+<div class="cart">
+
+<div class="cart-header">
+
+<h2>Your Cart</h2>
+
+<button class="close" onclick="closeCart()">✕</button>
+
+</div>
+
+<div id="cartItems"></div>
+
+<div class="cart-summary" id="cartSummary"></div>
+
+</div>
+
+</div>
+
+
+<!-- ================= LOCATION MODAL ================= -->
+
+<div class="modal" id="locationModal">
+
+<div class="modal-box">
+
+<h2>📍 Delivery Location</h2>
+
+<p style="margin-bottom:15px;color:#666">
+Where should we deliver your groceries?
+</p>
+
+<input
+type="text"
+id="locationInput"
+placeholder="Enter city or area"
+>
+
+<button
+class="primary-btn"
+style="width:100%"
+onclick="saveLocation()">
+Save Location
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= LOGIN/ORDER MODAL ================= -->
+
+<div class="modal" id="orderModal">
+
+<div class="modal-box">
+
+<h2>📦 Your Orders</h2>
+
+<p style="color:#777;margin-bottom:20px">
+Your recent orders will appear here after checkout.
+</p>
+
+<div style="
+background:#f6f7f8;
+padding:20px;
+border-radius:10px;
+">
+
+<strong>Demo Order</strong>
+
+<p style="margin-top:8px;color:#666">
+No real order has been placed.
+</p>
+
+</div>
+
+<br>
+
+<button
+class="primary-btn"
+style="width:100%"
+onclick="closeOrders()">
+
+Close
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<h3>QuickKart</h3>
+
+<p>
+A concept grocery platform designed around
+better transparency, flexible delivery and
+customer control.
+</p>
+
+</div>
+
+<div>
+
+<h3>Company</h3>
+
+<ul>
+<li>About</li>
+<li>Careers</li>
+<li>Contact</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Support</h3>
+
+<ul>
+<li>Help Center</li>
+<li>Delivery Help</li>
+<li>Refund Policy</li>
+</ul>
+
+</div>
+
+<div>
+
+<h3>Download</h3>
+
+<ul>
+<li>Android App</li>
+<li>iOS App</li>
+<li>Web App</li>
+</ul>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ================= PRODUCTS DATA ================= */
+
+const products = [
+
+{
+id:1,
+name:"Fresh Apples",
+category:"Fruits",
+weight:"1 kg",
+price:149,
+emoji:"🍎"
+},
+
+{
+id:2,
+name:"Bananas",
+category:"Fruits",
+weight:"1 dozen",
+price:59,
+emoji:"🍌"
+},
+
+{
+id:3,
+name:"Tomatoes",
+category:"Vegetables",
+weight:"1 kg",
+price:49,
+emoji:"🍅"
+},
+
+{
+id:4,
+name:"Broccoli",
+category:"Vegetables",
+weight:"500 g",
+price:79,
+emoji:"🥦"
+},
+
+{
+id:5,
+name:"Fresh Milk",
+category:"Dairy",
+weight:"1 litre",
+price:65,
+emoji:"🥛"
+},
+
+{
+id:6,
+name:"Cheese",
+category:"Dairy",
+weight:"200 g",
+price:120,
+emoji:"🧀"
+},
+
+{
+id:7,
+name:"Cookies",
+category:"Snacks",
+weight:"300 g",
+price:90,
+emoji:"🍪"
+},
+
+{
+id:8,
+name:"Potato Chips",
+category:"Snacks",
+weight:"150 g",
+price:45,
+emoji:"🥔"
+},
+
+{
+id:9,
+name:"Orange Juice",
+category:"Beverages",
+weight:"1 litre",
+price:110,
+emoji:"🧃"
+},
+
+{
+id:10,
+name:"Green Tea",
+category:"Beverages",
+weight:"25 bags",
+price:150,
+emoji:"🍵"
+},
+
+{
+id:11,
+name:"Basmati Rice",
+category:"Staples",
+weight:"5 kg",
+price:499,
+emoji:"🍚"
+},
+
+{
+id:12,
+name:"Wheat Flour",
+category:"Staples",
+weight:"5 kg",
+price:280,
+emoji:"🌾"
+},
+
+{
+id:13,
+name:"Dishwash Liquid",
+category:"Household",
+weight:"500 ml",
+price:99,
+emoji:"🧴"
+},
+
+{
+id:14,
+name:"Laundry Detergent",
+category:"Household",
+weight:"1 kg",
+price:180,
+emoji:"🧼"
+},
+
+{
+id:15,
+name:"Mangoes",
+category:"Fruits",
+weight:"1 kg",
+price:199,
+emoji:"🥭"
+}
+
+];
+
+
+/* ================= CART ================= */
+
+let cart =
+JSON.parse(localStorage.getItem("quickkartCart")) || [];
+
+
+/* ================= DISPLAY PRODUCTS ================= */
+
+function displayProducts(list=products){
+
+const grid =
+document.getElementById("productGrid");
+
+grid.innerHTML="";
+
+if(list.length===0){
+
+grid.innerHTML=`
+<div style="
+grid-column:1/-1;
+padding:60px;
+text-align:center;
+color:#777;
+">
+<h2>🔎 No products found</h2>
+<p>Try another search.</p>
+</div>
+`;
+
+return;
+
+}
+
+list.forEach(product=>{
+
+const item =
+cart.find(x=>x.id===product.id);
+
+const quantity =
+item ? item.quantity : 0;
+
+let buttonHTML;
+
+if(quantity===0){
+
+buttonHTML=`
+<button
+class="add-btn"
+onclick="addToCart(${product.id})">
+ADD
+</button>
+`;
+
+}else{
+
+buttonHTML=`
+
+<div class="qty-control">
+
+<button onclick="changeQuantity(${product.id},-1)">
+−
+</button>
+
+<strong>${quantity}</strong>
+
+<button onclick="changeQuantity(${product.id},1)">
++
+</button>
+
+</div>
+
+`;
+
+}
+
+grid.innerHTML += `
+
+<div class="product">
+
+<div class="product-image">
+${product.emoji}
+</div>
+
+<div class="product-info">
+
+<h3>${product.name}</h3>
+
+<span class="weight">
+${product.weight}
+</span>
+
+<div class="price-row">
+
+<span class="price">
+₹${product.price}
+</span>
+
+${buttonHTML}
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* ================= ADD ================= */
+
+function addToCart(id){
+
+const product =
+products.find(p=>p.id===id);
+
+const existing =
+cart.find(item=>item.id===id);
+
+if(existing){
+
+existing.quantity++;
+
+}else{
+
+cart.push({
+...product,
+quantity:1
+});
+
+}
+
+saveCart();
+
+showToast(product.name+" added to cart");
+
+}
+
+
+/* ================= QUANTITY ================= */
+
+function changeQuantity(id,change){
+
+const item =
+cart.find(x=>x.id===id);
+
+if(!item) return;
+
+item.quantity += change;
+
+if(item.quantity<=0){
+
+cart =
+cart.filter(x=>x.id!==id);
+
+}
+
+saveCart();
+
+}
+
+
+/* ================= SAVE CART ================= */
+
+function saveCart(){
+
+localStorage.setItem(
+"quickkartCart",
+JSON.stringify(cart)
+);
+
+updateCartCount();
+
+displayProducts();
+
+renderCart();
+
+}
+
+
+/* ================= CART COUNT ================= */
+
+function updateCartCount(){
+
+const count =
+cart.reduce(
+(sum,item)=>sum+item.quantity,
+0
+);
+
+document.getElementById("cartCount")
+.textContent=count;
+
+}
+
+
+/* ================= OPEN CART ================= */
+
+function openCart(){
+
+document.getElementById("cartOverlay")
+.style.display="block";
+
+renderCart();
+
+}
+
+
+/* ================= CLOSE CART ================= */
+
+function closeCart(){
+
+document.getElementById("cartOverlay")
+.style.display="none";
+
+}
+
+
+/* ================= RENDER CART ================= */
+
+function renderCart(){
+
+const container =
+document.getElementById("cartItems");
+
+const summary =
+document.getElementById("cartSummary");
+
+if(cart.length===0){
+
+container.innerHTML=`
+
+<div class="empty-cart">
+
+<div style="font-size:70px">🛒</div>
+
+<h3>Your cart is empty</h3>
+
+<p>Add some groceries to get started.</p>
+
+</div>
+
+`;
+
+summary.innerHTML="";
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+cart.forEach(item=>{
+
+container.innerHTML += `
+
+<div class="cart-item">
+
+<div class="cart-item-info">
+
+<strong>${item.name}</strong>
+
+<span>${item.weight}</span>
+
+<p>₹${item.price} × ${item.quantity}</p>
+
+</div>
+
+<div class="qty-control">
+
+<button onclick="changeQuantity(${item.id},-1)">
+−
+</button>
+
+<strong>${item.quantity}</strong>
+
+<button onclick="changeQuantity(${item.id},1)">
++
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+const subtotal =
+cart.reduce(
+(sum,item)=>
+sum+(item.price*item.quantity),
+0
+);
+
+const delivery =
+subtotal>=299 ? 0 : 25;
+
+const total =
+subtotal+delivery;
+
+
+summary.innerHTML=`
+
+<div class="summary-row">
+<span>Subtotal</span>
+<strong>₹${subtotal}</strong>
+</div>
+
+<div class="summary-row">
+<span>Delivery</span>
+<strong>${delivery===0 ? "FREE" : "₹"+delivery}</strong>
+</div>
+
+<div class="summary-row total">
+<span>Total</span>
+<strong>₹${total}</strong>
+</div>
+
+<button
+class="checkout"
+onclick="checkout()">
+
+Proceed to Checkout
+
+</button>
+
+`;
+
+}
+
+
+/* ================= CHECKOUT ================= */
+
+function checkout(){
+
+if(cart.length===0){
+
+showToast("Your cart is empty");
+
+return;
+
+}
+
+alert(
+"Demo Checkout\n\n"+
+"Total: ₹"+
+cart.reduce(
+(sum,item)=>sum+(item.price*item.quantity),
+0
+)+
+"\n\nNo real payment is processed."
+);
+
+cart=[];
+
+saveCart();
+
+closeCart();
+
+}
+
+
+/* ================= SEARCH ================= */
+
+function searchProducts(){
+
+const query =
+document.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const filtered =
+products.filter(product=>
+
+product.name.toLowerCase()
+.includes(query)
+
+||
+
+product.category.toLowerCase()
+.includes(query)
+
+);
+
+displayProducts(filtered);
+
+}
+
+
+/* ================= CATEGORY ================= */
+
+function filterCategory(category){
+
+const filtered =
+products.filter(
+p=>p.category===category
+);
+
+displayProducts(filtered);
+
+document.getElementById("productsSection")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* ================= SHOW ALL ================= */
+
+function showAllProducts(){
+
+document.getElementById("searchInput")
+.value="";
+
+displayProducts();
+
+}
+
+
+/* ================= LOCATION ================= */
+
+function openLocation(){
+
+document.getElementById("locationModal")
+.style.display="flex";
+
+}
+
+
+function saveLocation(){
+
+const input =
+document.getElementById("locationInput");
+
+if(!input.value.trim()){
+
+showToast("Enter a location");
+
+return;
+
+}
+
+document.getElementById("locationText")
+.textContent=input.value+" ▾";
+
+document.getElementById("locationModal")
+.style.display="none";
+
+showToast("Delivery location updated");
+
+}
+
+
+/* ================= ORDERS ================= */
+
+function openOrders(){
+
+document.getElementById("orderModal")
+.style.display="flex";
+
+}
+
+function closeOrders(){
+
+document.getElementById("orderModal")
+.style.display="none";
+
+}
+
+
+/* ================= FAVORITES ================= */
+
+function openFavorites(){
+
+showToast(
+"Favorites feature ready for backend integration ❤️"
+);
+
+}
+
+
+/* ================= FEATURE ================= */
+
+function showFeature(){
+
+alert(
+
+"How QuickKart works\n\n"+
+"1. Choose your groceries\n"+
+"2. Select your delivery location\n"+
+"3. Review transparent pricing\n"+
+"4. Choose delivery preferences\n"+
+"5. Track your order\n\n"+
+"This demo uses browser storage for the cart."
+
+);
+
+}
+
+
+/* ================= SCROLL ================= */
+
+function scrollToProducts(){
+
+document.getElementById("productsSection")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+const toast =
+document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.style.display="block";
+
+setTimeout(()=>{
+
+toast.style.display="none";
+
+},2200);
+
+}
+
+
+/* ================= INITIALIZE ================= */
+
+displayProducts();
+
+updateCartCount();
+
+</script>
+
+</body>
+</html>
